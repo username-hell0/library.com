@@ -34,3 +34,5 @@ Route::group($userConf, function (){
     Route::put('/users/{user}/verify', 'UserController@verify')->name('users.verify');
     Route::resource('/users', 'UserController');
 });
+
+Route::get('/search/user', 'Library\Search\SearchController@searchUser');
