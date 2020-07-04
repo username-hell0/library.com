@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
+Route::get('/verify/{token}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::get('/resend/mail', 'Auth\VerificationController@show')->name('resend.mail');
+Route::post('/resend/mail', 'Auth\VerificationController@resendShow')->name('resend.mail');
 
 Route::get('/home', 'HomeController@index')->name('home');
