@@ -25,3 +25,12 @@ Route::get('/resend/mail', 'Auth\VerificationController@show')->name('resend.mai
 Route::post('/resend/mail', 'Auth\VerificationController@resendShow')->name('resend.mail');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+$userConf = [
+    'namespace' => 'Library\User',
+];
+
+Route::group($userConf, function (){
+    Route::put('/users/{user}/verify', 'UserController@verify')->name('users.verify');
+    Route::resource('/users', 'UserController');
+});
